@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.ComponentModel.DataAnnotations;
 namespace ContactManager.Models
 {
@@ -21,6 +22,9 @@ namespace ContactManager.Models
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         public string? Organization { get; set; }
+        //todo fix date format
+        [BindProperty, DisplayFormat(DataFormatString = "{0:yyyy-MM-dd at HH:mm}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.DateTime)]
         public DateTime DateAdded { get; set; }
 
         [Required(ErrorMessage = "Please enter a Category.")]

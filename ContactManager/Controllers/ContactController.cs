@@ -39,49 +39,39 @@ namespace ContactManager.Controllers
             _unitOfWork.Save();
             return RedirectToAction("Index", "Home");
         }
-        //[HttpGet]
-        //public IActionResult Edit(int id)
-        //{
-        //    ViewBag.Action = "Edit";
-        //    ViewBag.Category = _unitOfWork.Categories.OrderBy(g => g.Name).ToList();
-        //    var contact = _unitOfWork.Contacts.Find(id);
-        //    return View(contact);
-        //}
-        //[HttpPost]
-        //public IActionResult Edit(Contact contact)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        if (contact.ContactId == 0)
-        //        {
-        //            _unitOfWork.Contacts.Add(contact);
-        //        }
-        //        else
-        //        {
-        //            _unitOfWork.Contacts.Update(contact);
-        //        }
-        //        _unitOfWork.SaveChanges();
-        //        return RedirectToAction("Index", "Home");
-        //    }
-        //    else
-        //    {
-        //        ViewBag.Action = (contact.ContactId == 0) ? "Add" : "Edit";
-        //        ViewBag.Category = _unitOfWork.Category.OrderBy(g => g.Name).ToList();
-        //        return View(contact);
-        //    }
-        //}
-        //[HttpGet]
-        //public IActionResult Delete(int id)
-        //{
-        //    var contact = _unitOfWork.Contacts.Find(id);
-        //    return View(contact);
-        //}
-        //[HttpPost]
-        //public IActionResult Delete(Contact contact)
-        //{
-        //    _unitOfWork.Contacts.Remove(contact);
-        //    _unitOfWork.SaveChanges();
-        //    return RedirectToAction("Index", "Home");
-        //}
+
+        public IActionResult Edit(int id)
+        {
+            var list = _unitOfWork.Categories.GetAll();
+            AddContactVM vm = new AddContactVM
+            {
+                CategoryList = list.Select(x => new SelectListItem
+                {
+                    Text = x.Name,
+                    Value = x.CategoryId.ToString()
+                }),
+                Contact = _unitOfWork.Contacts.GetFirstOrDefault(filter: x => x.ContactId == id)
+            };
+            return View(vm);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Contact contact)
+        {
+            var obj = _unitOfWork.Contacts.GetFirstOrDefault(x => x.ContactId == contact.ContactId);
+            obj = contact;
+            _unitOfWork.Contacts.Update(obj);
+            _unitOfWork.Save();
+            return RedirectToAction("Index", "Home");
+        }
+
+        public IActionResult Delete(int id)
+        {
+            var contact = _unitOfWork.Contacts.GetFirstOrDefault(filter: x => x.ContactId == id);
+            _unitOfWork.Contacts.Remove(contact);
+            _unitOfWork.Save();
+
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

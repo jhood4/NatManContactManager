@@ -16,7 +16,7 @@ namespace ContactManager.Data.Repository
         }
         public void Update(Contact contact)
         {
-            var obj = _db.Contacts.FirstOrDefault(c => c.CategoryId == contact.CategoryId);
+            var obj = _db.Contacts.FirstOrDefault(c => c.ContactId == contact.ContactId);
             obj.FirstName = contact.FirstName;
             obj.LastName = contact.LastName;
             obj.PhoneNumber = contact.PhoneNumber;
