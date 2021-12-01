@@ -1,0 +1,80 @@
+﻿@model Contact
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h3>Contact Details</h3>
+            <div class="card mb-0 w-100" style="width: 18rem;">
+                <div class="card-body w-100">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <div class="row m-0 p-0">
+                                <div class="col-1 m-0 p-0">
+                                    <p class="mb-0">Name:</p>
+                                </div>
+                                <div class="col-11 m-0 p-0">
+                                    <p class="mb-0">@Model.FirstName @Model.LastName</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row m-0 p-0">
+                                <div class="col-1 m-0 p-0">
+                                    <p class="mb-0">Phone:</p>
+                                </div>
+                                <div class="col-11 m-0 p-0">
+                                    <p class="mb-0">@Model.PhoneNumber</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row m-0 p-0">
+                                <div class="col-1 m-0 p-0">
+                                    <p class="mb-0">Email:</p>
+                                </div>
+                                <div class="col-11 m-0 p-0">
+                                    <p class="mb-0">@Model.Email</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row m-0 p-0">
+                                <div class="col-1 m-0 p-0">
+                                    <p class="mb-0">Category:</p>
+                                </div>
+                                <div class="col-11 m-0 p-0">
+                                    <p class="mb-0">@Model.Category.Name</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row m-0 p-0">
+                                <div class="col-2 m-0 p-0">
+                                    <p class="mb-0">Organization:</p>
+                                </div>
+                                <div class="col-10 m-0 p-0">
+                                    <p class="mb-0">@Model.Organization</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row m-0 p-0">
+                                <div class="col-2 m-0 p-0">
+                                    <p class="mb-0">Date Added:</p>
+                                </div>
+                                <div class="col-10 m-0 p-0">
+                                    <p class="mb-0">@Model.DateAdded</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-footer mb-0">
+                    <a asp-controller="Contact" asp-action="Edit" asp-route-id="@Model.ContactId" class="btn btn-dark">Edit</a>
+                    <a asp-controller="Contact" asp-action="Delete" asp-route-id="@Model.ContactId" class="btn btn-dark">Delete</a>
+                    <a asp-controller="Home" asp-action="Index" class="btn btn-dark">Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
