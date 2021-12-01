@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using ContactManager.Models;
 using ContactManager.Data;
 using ContactManager.Data.Repository.IRepository;
+using ContactManager.Models.ViewModels;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ContactManager.Controllers
 {
@@ -17,15 +19,26 @@ namespace ContactManager.Controllers
 
         public IActionResult Add()
         {
-            return View();
+            var list = _unitOfWork.Categories.GetAll();
+            AddContactVM vm = new AddContactVM
+            {
+                CategoryList = list.Select(x => new SelectListItem
+                {
+                    Text = x.Name,
+                    Value = x.CategoryId.ToString()
+                }),
+                Contact = new Contact()
+            };
+            return View(vm);
         }
-        //[HttpGet]
-        //public IActionResult Add()
-        //{
-        //    ViewBag.Action = "Add";
-        //    ViewBag.Category = _unitOfWork.Categories.OrderBy(g => g.Name).ToList();
-        //    return View("Edit", new Contact());
-        //}
+
+        [HttpPost]
+        public IActionResult Add(AddContactVM vm)
+        {
+            _unitOfWork.Contacts.Add(vm.Contact);
+            _unitOfWork.Save();
+            return RedirectToAction("Index", "Home");
+        }
         //[HttpGet]
         //public IActionResult Edit(int id)
         //{

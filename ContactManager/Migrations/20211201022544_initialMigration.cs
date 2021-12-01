@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ContactManager.Migrations
 {
@@ -28,6 +29,8 @@ namespace ContactManager.Migrations
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Organization = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DateAdded = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CategoryId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
@@ -58,18 +61,18 @@ namespace ContactManager.Migrations
 
             migrationBuilder.InsertData(
                 table: "Contacts",
-                columns: new[] { "ContactId", "CategoryId", "Email", "FirstName", "LastName", "PhoneNumber" },
-                values: new object[] { 1, "1", "delores@hotmail.com", "Delores", "Del Rio", "555-987-6543" });
+                columns: new[] { "ContactId", "CategoryId", "DateAdded", "Email", "FirstName", "LastName", "Organization", "PhoneNumber" },
+                values: new object[] { 1, "1", new DateTime(2021, 11, 25, 21, 25, 44, 454, DateTimeKind.Local).AddTicks(2465), "delores@hotmail.com", "Delores", "Del Rio", null, "555-987-6543" });
 
             migrationBuilder.InsertData(
                 table: "Contacts",
-                columns: new[] { "ContactId", "CategoryId", "Email", "FirstName", "LastName", "PhoneNumber" },
-                values: new object[] { 2, "2", "efren@aol.com", "Efren", "Herrera", "555-456-7890" });
+                columns: new[] { "ContactId", "CategoryId", "DateAdded", "Email", "FirstName", "LastName", "Organization", "PhoneNumber" },
+                values: new object[] { 2, "2", new DateTime(2008, 11, 30, 21, 25, 44, 456, DateTimeKind.Local).AddTicks(1787), "efren@aol.com", "Efren", "Herrera", null, "555-456-7890" });
 
             migrationBuilder.InsertData(
                 table: "Contacts",
-                columns: new[] { "ContactId", "CategoryId", "Email", "FirstName", "LastName", "PhoneNumber" },
-                values: new object[] { 3, "3", "MaryEllen@yahoo.com", "Mary", "Ellen", "555-123-4567" });
+                columns: new[] { "ContactId", "CategoryId", "DateAdded", "Email", "FirstName", "LastName", "Organization", "PhoneNumber" },
+                values: new object[] { 3, "3", new DateTime(2021, 11, 30, 21, 25, 44, 456, DateTimeKind.Local).AddTicks(1860), "MaryEllen@yahoo.com", "Mary", "Ellen", null, "555-123-4567" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Contacts_CategoryId",

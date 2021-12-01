@@ -13,10 +13,12 @@ namespace ContactManager.Models
         public string LastName { get; set; }
 
         [Required(ErrorMessage = "Please enter a Phone Number.")] 
+        [DataType(DataType.PhoneNumber)]
         //[Range(1889, 2999, ErrorMessage = "Year must be after 1889.")] 
         public string PhoneNumber { get; set; }
 
         [Required(ErrorMessage = "Please enter an Email.")]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         public string? Organization { get; set; }
         public DateTime DateAdded { get; set; }

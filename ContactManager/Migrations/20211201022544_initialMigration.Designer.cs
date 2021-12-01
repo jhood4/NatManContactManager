@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ContactManager.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20211201013824_addOrgAndDateAddedToContacts")]
-    partial class addOrgAndDateAddedToContacts
+    [Migration("20211201022544_initialMigration")]
+    partial class initialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -95,7 +95,7 @@ namespace ContactManager.Migrations
                         {
                             ContactId = 1,
                             CategoryId = "1",
-                            DateAdded = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateAdded = new DateTime(2021, 11, 25, 21, 25, 44, 454, DateTimeKind.Local).AddTicks(2465),
                             Email = "delores@hotmail.com",
                             FirstName = "Delores",
                             LastName = "Del Rio",
@@ -105,7 +105,7 @@ namespace ContactManager.Migrations
                         {
                             ContactId = 2,
                             CategoryId = "2",
-                            DateAdded = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateAdded = new DateTime(2008, 11, 30, 21, 25, 44, 456, DateTimeKind.Local).AddTicks(1787),
                             Email = "efren@aol.com",
                             FirstName = "Efren",
                             LastName = "Herrera",
@@ -115,7 +115,7 @@ namespace ContactManager.Migrations
                         {
                             ContactId = 3,
                             CategoryId = "3",
-                            DateAdded = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateAdded = new DateTime(2021, 11, 30, 21, 25, 44, 456, DateTimeKind.Local).AddTicks(1860),
                             Email = "MaryEllen@yahoo.com",
                             FirstName = "Mary",
                             LastName = "Ellen",

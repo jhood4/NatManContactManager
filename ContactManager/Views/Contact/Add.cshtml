@@ -1,0 +1,40 @@
+﻿@model ContactManager.Models.ViewModels.AddContactVM
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h3>Add Contact</h3>
+            <form asp-controller="Contact" asp-action="Add" method="post" id="addContactForm">
+                <div class="form-group">
+                    <label asp-for="@Model.Contact.FirstName">First name</label>
+                    <input asp-for="@Model.Contact.FirstName" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.Contact.LastName">Last name</label>
+                    <input asp-for="@Model.Contact.LastName" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.Contact.PhoneNumber">Phone Number</label>
+                    <input asp-for="@Model.Contact.PhoneNumber" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.Contact.Email">Email address</label>
+                    <input asp-for="@Model.Contact.Email" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.Contact.Category.Name">Category</label>
+                    <select asp-for="@Model.Contact.CategoryId" class="form-control" asp-items="@Model.CategoryList"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.Contact.Organization">Organization</label>
+                    <input asp-for="@Model.Contact.Organization" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.Contact.DateAdded">Date added</label>
+                    <input asp-for="@Model.Contact.DateAdded" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
